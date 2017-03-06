@@ -10,7 +10,10 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 var dev = true;
-
+gulp.task('deploy', ['default'], () => {
+  return gulp.src('dist/**/*')
+    .pipe($.ghPages());
+});
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.css')
     .pipe($.if(dev, $.sourcemaps.init()))
